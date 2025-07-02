@@ -1,0 +1,49 @@
+{
+  "name": "virtual-ui-cli",
+  "version": "1.0.2",
+  "description": "CLI for Virtual UI - Add beautiful components to your React project",
+  "main": "dist/index.js",
+  "bin": {
+    "virtual-ui": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "react",
+    "tailwind",
+    "cli",
+    "virtual-ui"
+  ],
+  "author": "Yuri Bodo",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "fs-extra": "^11.2.0",
+    "node-fetch": "^2.7.0",
+    "ora": "^5.4.1",
+    "zod": "^3.22.4",
+    "cosmiconfig": "^8.3.6",
+    "execa": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/inquirer": "^8.2.10",
+    "@types/fs-extra": "^11.0.4",
+    "typescript": "^5.3.0"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuribodo/virtual-ui"
+  }
+}

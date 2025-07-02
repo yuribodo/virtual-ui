@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  /* Cupcake Theme - Light Color Scheme */
+  color-scheme: light;
+  
+  /* Base Colors */
+  --background: oklch(97.788% 0.004 56.375);
+  --foreground: oklch(0% 0 0);
+  --base-100: oklch(97.788% 0.004 56.375);
+  --base-200: oklch(93.982% 0.007 61.449);
+  --base-300: oklch(91.586% 0.006 53.44);
+  --base-content: oklch(0% 0 0);
+  
+  /* Brand Colors */
+  --primary: oklch(42% 0.095 57.708);
+  --primary-content: oklch(100% 0 0);
+  --secondary: oklch(55% 0.135 66.442);
+  --secondary-content: oklch(100% 0 0);
+  --accent: oklch(42% 0.095 57.708);
+  --accent-content: oklch(100% 0 0);
+  
+  /* Neutral Colors */
+  --neutral: oklch(27% 0.006 286.033);
+  --neutral-content: oklch(92% 0.004 286.32);
+  
+  /* Status Colors */
+  --info: oklch(54% 0.245 262.881);
+  --info-content: oklch(100% 0 0);
+  --success: oklch(52% 0.154 150.069);
+  --success-content: oklch(100% 0 0);
+  --warning: oklch(66% 0.179 58.318);
+  --warning-content: oklch(100% 0 0);
+  --error: oklch(50% 0.213 27.518);
+  --error-content: oklch(100% 0 0);
+  
+  /* Border Radius */
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --radius: 1rem;
+  
+  /* Sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.28125rem;
+  
+  /* Border */
+  --border: 2px;
+  
+  /* Effects */
+  --depth: 1;
+  --noise: 1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-base-100: var(--base-100);
+  --color-base-200: var(--base-200);
+  --color-base-300: var(--base-300);
+  --color-base-content: var(--base-content);
+  --color-primary: var(--primary);
+  --color-primary-content: var(--primary-content);
+  --color-secondary: var(--secondary);
+  --color-secondary-content: var(--secondary-content);
+  --color-accent: var(--accent);
+  --color-accent-content: var(--accent-content);
+  --color-neutral: var(--neutral);
+  --color-neutral-content: var(--neutral-content);
+  --color-info: var(--info);
+  --color-info-content: var(--info-content);
+  --color-success: var(--success);
+  --color-success-content: var(--success-content);
+  --color-warning: var(--warning);
+  --color-warning-content: var(--warning-content);
+  --color-error: var(--error);
+  --color-error-content: var(--error-content);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Keep the same cupcake theme even in dark mode preference */
+    /* This maintains consistency with the light cupcake theme */
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Base component styles following cupcake theme */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-content);
+  border-radius: var(--radius);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-content);
+  border-radius: var(--radius);
+}
+
+.card {
+  background-color: var(--base-100);
+  border-radius: var(--radius-box);
+  border: var(--border) solid var(--base-300);
+}
+
+.input {
+  background-color: var(--base-100);
+  border: var(--border) solid var(--base-300);
+  border-radius: var(--radius-field);
+  color: var(--base-content);
+}
+
+.alert-info {
+  background-color: var(--info);
+  color: var(--info-content);
+}
+
+.alert-success {
+  background-color: var(--success);
+  color: var(--success-content);
+}
+
+.alert-warning {
+  background-color: var(--warning);
+  color: var(--warning-content);
+}
+
+.alert-error {
+  background-color: var(--error);
+  color: var(--error-content);
+}
+
+/* ParallaxCard specific styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Custom slider styles for playground */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 0 2px 0 var(--accent);
+}
+
+.slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px 0 var(--accent);
+}
+  
