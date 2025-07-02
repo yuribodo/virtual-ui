@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import chalk from 'chalk';
 import ora from 'ora';
 import inquirer from 'inquirer';
-import execa = require("execa")
+import execa from 'execa';
 import { getConfig, resolveConfigPaths } from '../utils/config';
 import { getComponent, getComponentNames } from '../utils/registry';
 

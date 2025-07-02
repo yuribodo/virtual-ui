@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import chalk from 'chalk';
 import ora from 'ora';
 import inquirer from 'inquirer';
-import execa = require("execa")
+import execa from 'execa';
 import { getConfig, saveConfig, getDefaultConfig, type Config } from '../utils/config';
 
 interface InitOptions {
