@@ -3,8 +3,12 @@ import fs from 'fs-extra';
 import chalk from 'chalk';
 import ora from 'ora';
 import inquirer from 'inquirer';
-import execa from 'execa';
+import * as execaModule from 'execa';
 import { getConfig, saveConfig, getDefaultConfig, type Config } from '../utils/config';
+
+// Work around type issues between ESM-only `execa` and TypeScript
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+const execa: any = (execaModule as any).execa;
 
 interface InitOptions {
   yes?: boolean;
