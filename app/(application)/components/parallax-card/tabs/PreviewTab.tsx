@@ -138,7 +138,7 @@ const packageManagers = [
 ] as const;
 
 function InstallationTabs() {
-  const [activeManager, setActiveManager] = useState<'pnpm' | 'npm' | 'yarn' | 'bun'>('npm');
+  const [activeManager, setActiveManager] = useState<'pnpm' | 'npm' | 'yarn' | 'bun'>('pnpm');
   const [copied, setCopied] = useState(false);
 
   const copyCommand = (command: string, managerName: string) => {
