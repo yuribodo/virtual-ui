@@ -285,7 +285,6 @@ export default function PreviewTab() {
     const variants: Variant[] = ['default', 'glass', 'gradient', 'shadow', 'neon'];
     const titles = ['Amazing Discovery', 'Creative Genius', 'Digital Innovation', 'Future Vision', 'Tech Mastery'];
     const descriptions = ['Discover the possibilities with this randomized configuration', 'Let creativity flow with unexpected combinations'];
-    const colors = ['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#ec4899'];
 
     setPlaygroundProps({
       title: titles[Math.floor(Math.random() * titles.length)],
@@ -300,13 +299,13 @@ export default function PreviewTab() {
         customCode: ''
       },
       colors: {
-        primary: colors[Math.floor(Math.random() * colors.length)],
-        secondary: colors[Math.floor(Math.random() * colors.length)],
-        accent: colors[Math.floor(Math.random() * colors.length)],
-        background: colors[Math.floor(Math.random() * colors.length)],
-        text: colors[Math.floor(Math.random() * colors.length)],
-        title: colors[Math.floor(Math.random() * colors.length)],
-        description: colors[Math.floor(Math.random() * colors.length)]
+        primary: '#3b82f6',
+        secondary: '#8b5cf6',
+        accent: '#06b6d4',
+        background: '#ffffff',
+        text: '#000000',
+        title: '#000000',
+        description: '#000000'
       },
       className: Math.random() > 0.7 ? 'border-2 border-dashed border-purple-500' : ''
     });
