@@ -71,6 +71,11 @@ function HeroButton({ children, variant = 'primary', href, onClick, className }:
     y.set(0);
   };
 
+  const handleClick = () => {
+    // Call original onClick if provided
+    if (onClick) onClick();
+  };
+
   const baseClasses = clsx(
     'inline-flex items-center justify-center',
     'px-8 py-4',
@@ -103,7 +108,7 @@ function HeroButton({ children, variant = 'primary', href, onClick, className }:
   const buttonClasses = clsx(baseClasses, variantClasses[variant], className);
 
   const ButtonComponent = href ? motion.a : motion.button;
-  const buttonProps = href ? { href } : { onClick };
+  const buttonProps = href ? { href } : {};
 
   return (
     <ButtonComponent
@@ -112,6 +117,7 @@ function HeroButton({ children, variant = 'primary', href, onClick, className }:
       className={buttonClasses}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
       style={{
         rotateX,
         rotateY,
@@ -122,21 +128,49 @@ function HeroButton({ children, variant = 'primary', href, onClick, className }:
         transition: { duration: 0.1 }
       }}
       initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
+            animate={{ 
+        opacity: 1, 
+        scale: 1,
+      }}
+      whileHover={{
+        scale: 1.05,
+        y: -2,
+        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",
+      }}
       transition={{ 
         duration: 0.6, 
         delay: 0.8,
-        ease: [0.23, 1, 0.32, 1]
+        ease: [0.23, 1, 0.32, 1],
       }}
     >
-      {/* Subtle shimmer effect */}
+      {/* Enhanced shimmer effect */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
         initial={{ x: '-100%' }}
         whileHover={{ x: '100%' }}
-        transition={{ duration: 0.6, ease: 'easeInOut' }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
       />
-      <span className="relative z-10">{children}</span>
+      
+      {/* Hover glow effect */}
+      <motion.div
+        className="absolute inset-0 rounded-[var(--radius)] bg-gradient-to-r from-white/10 to-white/5"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+      
+      <motion.span 
+        className="relative z-10 font-bold"
+        whileHover={{
+          scale: 1.02,
+        }}
+        transition={{ 
+          duration: 0.2,
+          ease: [0.25, 0.46, 0.45, 0.94]
+        }}
+      >
+        {children}
+      </motion.span>
     </ButtonComponent>
   );
 }

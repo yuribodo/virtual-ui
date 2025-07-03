@@ -6,6 +6,8 @@ export default function Home() {
   return (
     <Hero>
       <Hero.Content>
+        <Hero.Icon className="mb-8" />
+        
         <Hero.Title>
           <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">
             Virtual UI

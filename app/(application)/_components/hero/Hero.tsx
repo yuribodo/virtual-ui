@@ -8,6 +8,7 @@ import { HeroDescription } from './HeroDescription';
 import { HeroActions } from './HeroActions';
 import { HeroVisual } from './HeroVisual';
 import { DotPattern } from './DotPattern';
+import { HeroIcon } from './HeroIcon';
 
 interface HeroProps {
   children: React.ReactNode;
@@ -71,4 +72,5 @@ export const Hero = Object.assign(HeroRoot, {
   Description: HeroDescription,
   Actions: HeroActions,
   Visual: HeroVisual,
+  Icon: HeroIcon,
 }); 
