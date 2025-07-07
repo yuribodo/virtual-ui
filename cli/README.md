@@ -203,7 +203,14 @@ export default function Home() {
   return (
     <main className="container mx-auto py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <ParallaxCardimport { ParallaxCard } from '@/components/ui/parallax-card';
+
+export default function Home() {
+  return (
+    <main className="container mx-auto py-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <ParallaxCard
+
           title="Product 1"
           description="Product description with parallax effect"
           image="https://example.com/image1.jpg"
