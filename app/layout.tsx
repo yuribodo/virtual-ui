@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "./(application)/_components/navbar";
 import { Toaster } from "sonner";
 import { IconOfficial } from "./(application)/_components/icon";
+import Script from "next/script";
 export const metadata: Metadata = {
   title: "Virtual UI",
   description: "Virtual UI is a Component Library for Micro Interactions.",
@@ -18,6 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <header>
+        <Script
+            defer
+            data-website-id="6870851ca26924c695ba1abe"
+            data-domain="virtual-ui-eight.vercel.app"
+            src="https://datafa.st/js/script.js"
+          />
+      </header>
       <body>
         <Navbar 
           variant="blur"
