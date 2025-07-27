@@ -1,0 +1,19 @@
+# CLI tests and development files
+cli/tests/
+cli/jest.config.js
+cli/coverage/
+cli/node_modules/
+cli/*.tgz
+
+# Test files
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Development files
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

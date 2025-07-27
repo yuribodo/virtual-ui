@@ -20,6 +20,18 @@ interface Category {
 
 const componentsData: Category[] = [
   {
+    name: 'Buttons',
+    components: [
+      { 
+        id: 'button-liquid', 
+        name: 'Button Liquid', 
+        description: 'Button with liquid ripple effect', 
+        href: '/components/button-liquid',
+        category: 'buttons' 
+      },
+    ]
+  },
+  {
     name: 'Interactive',
     components: [
       { 
@@ -34,7 +46,7 @@ const componentsData: Category[] = [
 ];
 
 export function ComponentsSidebar() {
-  const [expandedCategories, setExpandedCategories] = useState<string[]>(['Interactive']);
+  const [expandedCategories, setExpandedCategories] = useState<string[]>(['Buttons', 'Interactive']);
   const pathname = usePathname();
 
   const toggleCategory = (categoryName: string) => {

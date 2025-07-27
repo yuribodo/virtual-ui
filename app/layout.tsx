@@ -19,14 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <header>
+      <head>
         <Script
             defer
             data-website-id="6870851ca26924c695ba1abe"
             data-domain="virtual-ui-eight.vercel.app"
             src="https://datafa.st/js/script.js"
           />
-      </header>
+      </head>
       <body>
         <Navbar 
           variant="blur"

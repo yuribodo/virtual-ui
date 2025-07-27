@@ -13,7 +13,7 @@ const program = new commander_1.Command();
 program
     .name('virtual-ui')
     .description('Add beautiful components to your React project')
-    .version('1.0.0');
+    .version('1.0.5');
 program
     .command('init')
     .description('Initialize Virtual UI in your project')
