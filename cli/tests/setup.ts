@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import fs from 'fs-extra';
 import path from 'path';
 import os from 'os';
@@ -5,10 +6,10 @@ import os from 'os';
 // Mock console methods to reduce noise in tests
 global.console = {
   ...console,
-  log: jest.fn(),
-  error: jest.fn(),
-  warn: jest.fn(),
-  info: jest.fn(),
+  log: jest.fn() as jest.MockedFunction<typeof console.log>,
+  error: jest.fn() as jest.MockedFunction<typeof console.error>,
+  warn: jest.fn() as jest.MockedFunction<typeof console.warn>,
+  info: jest.fn() as jest.MockedFunction<typeof console.info>,
 };
 
 // Create temporary test directory for each test
