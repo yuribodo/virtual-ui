@@ -51,11 +51,34 @@ const execa = execaModule.execa;
 async function addCommand(components, options) {
     const cwd = options.cwd || process.cwd();
     // Check if project is initialized
-    const config = await (0, config_1.getConfig)(cwd);
+    let config = await (0, config_1.getConfig)(cwd);
     if (!config) {
-        console.error(chalk_1.default.red('✗ Virtual UI is not initialized in this project.'));
-        console.log(chalk_1.default.gray('Run \`npx virtual-ui init\` to get started.'));
-        return;
+        console.log(chalk_1.default.yellow('⚠ Virtual UI is not initialized in this project.'));
+        if (!options.yes) {
+            const { shouldInit } = await inquirer_1.default.prompt([
+                {
+                    type: 'confirm',
+                    name: 'shouldInit',
+                    message: 'Would you like to initialize Virtual UI now?',
+                    default: true,
+                },
+            ]);
+            if (!shouldInit) {
+                console.log(chalk_1.default.gray('Installation cancelled. Run \`npx virtual-ui init\` to get started.'));
+                return;
+            }
+        }
+        console.log(chalk_1.default.blue('🚀 Initializing Virtual UI...'));
+        // Auto-initialize with sensible defaults
+        const { initCommand } = await Promise.resolve().then(() => __importStar(require('./init')));
+        await initCommand({ yes: true });
+        // Re-fetch config after initialization
+        config = await (0, config_1.getConfig)(cwd);
+        if (!config) {
+            console.error(chalk_1.default.red('✗ Failed to initialize Virtual UI.'));
+            return;
+        }
+        console.log(chalk_1.default.green('✅ Virtual UI initialized successfully!'));
     }
     // If no components specified, prompt for selection
     if (components.length === 0) {
@@ -190,13 +213,37 @@ async function addCommand(components, options) {
         console.error(error);
     }
 }
-async function updateTailwindConfig(configPath, config) {
+async function updateTailwindConfig(configPath, componentConfig) {
     if (!await fs_extra_1.default.pathExists(configPath)) {
         return;
     }
-    // This is a simplified version - in production, you'd want to parse and merge properly
-    const currentConfig = await fs_extra_1.default.readFile(configPath, 'utf8');
-    console.log(chalk_1.default.yellow('Tailwind config updates may be needed. Please check the documentation.'));
+    try {
+        const currentConfig = await fs_extra_1.default.readFile(configPath, 'utf8');
+        // Check if perspective config already exists
+        if (currentConfig.includes('perspective') && currentConfig.includes('1000px')) {
+            return; // Already configured
+        }
+        // Simple string-based merging for perspective config
+        if (componentConfig.theme?.extend?.perspective) {
+            const perspectiveConfig = `
+      perspective: {
+        '1000': '1000px',
+      },`;
+            // Find the extend section and add perspective
+            if (currentConfig.includes('extend: {')) {
+                const updatedConfig = currentConfig.replace('extend: {', `extend: {${perspectiveConfig}`);
+                await fs_extra_1.default.writeFile(configPath, updatedConfig);
+                console.log(chalk_1.default.green('📝 Updated Tailwind config with perspective utilities'));
+            }
+            else {
+                console.log(chalk_1.default.yellow('⚠ Please manually add perspective utilities to your Tailwind config:'));
+                console.log(chalk_1.default.gray('theme: { extend: { perspective: { "1000": "1000px" } } }'));
+            }
+        }
+    }
+    catch (error) {
+        console.log(chalk_1.default.yellow('⚠ Could not automatically update Tailwind config. Please check the documentation.'));
+    }
 }
 async function updateGlobalCSS(cssPath, cssRules) {
     if (!await fs_extra_1.default.pathExists(cssPath)) {
